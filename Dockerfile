@@ -31,9 +31,11 @@ RUN DEBIAN_FRONTEND=noninteractive \
 # RUN apt-get -y install ssh supervisor &&\
 #     sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/; s/^.*Port .*$/Port 2222/' /etc/ssh/sshd_config &&\
 #     mkdir /run/sshd
-# EXPOSE 2222:2222
+
+EXPOSE 2222:2222
 
 COPY assets /root/
+# COPY assets/supervisor /etc/supervisor
 
 WORKDIR /root/postgresql
 RUN dpkg -i libicu*_amd64.deb &&\
@@ -43,9 +45,12 @@ RUN dpkg -i libicu*_amd64.deb &&\
     rm -rf /var/lib/postgresql/10/main &&\
     echo "export PATH=\"${PATH}\"" >> /etc/environment
 
-EXPOSE 5432:5432
+EXPOSE 5432
 
 # VOLUME ${PGDATA}
 
 WORKDIR /
-ENTRYPOINT ["/root/docker-entrypoint.sh"]
+RUN ln -s /root/docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["postgres"]
