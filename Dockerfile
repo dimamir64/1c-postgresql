@@ -31,8 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 # RUN apt-get -y install ssh supervisor &&\
 #     sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/; s/^.*Port .*$/Port 2222/' /etc/ssh/sshd_config &&\
 #     mkdir /run/sshd
-
-EXPOSE 2222:2222
+# EXPOSE 2222:2222
 
 COPY assets /root/
 # COPY assets/supervisor /etc/supervisor
