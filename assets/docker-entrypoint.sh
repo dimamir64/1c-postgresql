@@ -13,6 +13,9 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
   gosu postgres initdb --username="$POSTGRES_USER" --pwfile=/tmp/pgpass $PGDATA
   rm -f /tmp/pgpass
 
+  sed -Ei 's/^#?host\s*all\s*all\s*127.*/host    all             all             0.0.0.0\/0               trust/' $PGDATA/pg_hba.conf
+
+  sed -Ei "s/^#?listen_addresses ?=.*/listen_addresses='*'/"                               $PG_CONFIG
   sed -Ei 's/^#?max_connections ?=.*/max_connections=1000/'                                $PG_CONFIG
   sed -Ei 's/^#?shared_buffers ?=.*/shared_buffers=6GB/'                                   $PG_CONFIG
   sed -Ei 's/^#?temp_buffers ?=.*/temp_buffers=256MB/'                                     $PG_CONFIG

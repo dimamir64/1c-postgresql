@@ -1,12 +1,12 @@
 FROM ubuntu:20.04
 
 LABEL maintainer="anton@sirius.if.ua" \
-      version="1.2" \
-      description="1C modification of PostgreSQL ver 12 1C"
+      version="12.3" \
+      description="1C modification of PostgreSQL ver 12.3 1C"
 
 ENV POSTGRES_USER=postgres     \
     POSTGRES_PASSWORD=password \
-    PGDATA="/var/1C/postgresql-10/data"
+    PGDATA="/var/postgresql-1c/12/data"
 ENV LANG=uk_UA.UTF-8 LANGUAGE=ru
 ENV LC_ALL=${LANG} \
     PATH="/opt/pgpro/1c-12/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get -y -q update &&\
     apt-get -y -q install dialog apt-utils &&\
     echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections &&\
-    apt-get -y -q install htop sudo less mc iputils-ping vim-tiny curl gnupg2 locales locales-all gosu tzdata >/dev/null 2>&1 &&\
+    apt-get -y -q install net-tools htop sudo less mc iputils-ping vim-tiny curl gnupg2 locales locales-all gosu tzdata >/dev/null 2>&1 &&\
     ln -s /usr/bin/vim.tiny /usr/bin/vim &&\
     /usr/sbin/locale-gen ${LANG} ru_RU.UTF-8 ru_UA.UTF-8 uk_UA.UTF-8 &&\
     echo "LANG=\"${LANG}\"\nLANGUAGE=\"${LANGUAGE}\"" > /etc/default/locale &&\
