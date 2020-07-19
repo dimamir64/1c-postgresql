@@ -19,7 +19,7 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
   sed -Ei 's/^#?max_connections ?=.*/max_connections=1000/'                                $PG_CONFIG
   sed -Ei 's/^#?shared_buffers ?=.*/shared_buffers=6GB/'                                   $PG_CONFIG
   sed -Ei 's/^#?temp_buffers ?=.*/temp_buffers=256MB/'                                     $PG_CONFIG
-  sed -Ei 's/^#?work_mem ?=.*/work_mem=512MB/'                                             $PG_CONFIG
+  sed -Ei 's/^#?work_mem ?=.*/work_mem=768MB/'                                             $PG_CONFIG
   sed -Ei 's/^#?maintenance_work_mem ?=.*/maintenance_work_mem=2GB/'                       $PG_CONFIG
   sed -Ei 's/^#?max_files_per_process ?=.*/max_files_per_process=1000/'                    $PG_CONFIG
   sed -Ei 's/^#?bgwriter_delay ?=.*/bgwriter_delay=20ms/'                                  $PG_CONFIG
@@ -27,8 +27,8 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
   sed -Ei 's/^#?bgwriter_lru_multiplier ?=.*/bgwriter_lru_multiplier=4.0/'                 $PG_CONFIG
   sed -Ei 's/^#?effective_io_concurrency ?=.*/effective_io_concurrency=700/'               $PG_CONFIG
   sed -Ei 's/^#?max_worker_processes ?=.*/max_worker_processes=16/'                        $PG_CONFIG
-  sed -Ei 's/^#?max_parallel_workers_per_gather ?=.*/max_parallel_workers_per_gather=16/'  $PG_CONFIG
-  sed -Ei 's/^#?max_parallel_workers ?=.*/max_parallel_workers=8/'                         $PG_CONFIG
+  sed -Ei 's/^#?max_parallel_workers_per_gather ?=.*/max_parallel_workers_per_gather=8/'  $PG_CONFIG
+  sed -Ei 's/^#?max_parallel_workers ?=.*/max_parallel_workers=16/'                        $PG_CONFIG
   sed -Ei 's/^#?max_parallel_maintenance_workers ?=.*/max_parallel_maintenance_workers=4/' $PG_CONFIG
   sed -Ei 's/^#?fsync ?=.*/fsync=on/'                                                      $PG_CONFIG
   sed -Ei 's/^#?synchronous_commit ?=.*/synchronous_commit=off/'                           $PG_CONFIG

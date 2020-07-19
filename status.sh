@@ -2,4 +2,4 @@
 
 # docker ps
 docker container ls
-docker logs -f $(docker container ls -q)
+docker logs -f 1c-postgresql-12
